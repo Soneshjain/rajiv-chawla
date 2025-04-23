@@ -120,9 +120,9 @@ h1, h2, h3, h4, h5 {
     position: absolute;
     inset: 0;
     background: linear-gradient(
-        135deg,
+        90deg,
         rgba(28, 43, 163, 0.97) 0%,
-        rgba(45, 63, 231, 0.95) 100%
+        rgba(45, 63, 231, 0.20) 100%
     );
 }
 
@@ -277,7 +277,7 @@ h1, h2, h3, h4, h5 {
 
 .section__title {
     font-size: var(--fs-800);
-    margin-bottom: var(--space-lg);
+    margin-bottom: var(--space-md);
     text-align: center;
 }
 
@@ -691,6 +691,9 @@ h1, h2, h3, h4, h5 {
     color: var(--clr-white);
 }
 
+.section__subtitle {
+    text-align: center;
+}
 .section--dark .section__title,
 .section--dark .section__subtitle {
     color: var(--clr-white);
