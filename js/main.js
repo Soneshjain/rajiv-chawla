@@ -60,3 +60,61 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+// Testimonials Slider
+document.addEventListener('DOMContentLoaded', function() {
+    const track = document.querySelector('.testimonials-track');
+    const dots = document.querySelectorAll('.nav-dot');
+    let currentSlide = 0;
+    let autoplayInterval;
+    let slidesPerView = 1;
+
+    function updateSlidesPerView() {
+        slidesPerView = window.innerWidth >= 768 ? 2 : 1;
+        return Math.ceil(6 / slidesPerView); // Total number of slides needed
+    }
+
+    function initializeSlider() {
+        const totalSlides = updateSlidesPerView();
+        
+        // Update dots visibility
+        dots.forEach((dot, index) => {
+            dot.style.display = index < totalSlides ? 'block' : 'none';
+        });
+
+        // Reset transform
+        updateSlide();
+        
+        // Start autoplay
+        autoplayInterval = setInterval(() => {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateSlide();
+        }, 3000);
+    }
+
+    function updateSlide() {
+        const slideWidth = 100 / slidesPerView;
+        track.style.transform = `translateX(-${currentSlide * slideWidth}%)`;
+        
+        // Update active dot
+        dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentSlide);
+        });
+    }
+
+    // Initialize slider
+    initializeSlider();
+
+    // Handle window resize
+    window.addEventListener('resize', initializeSlider);
+
+    // Add click handlers to dots
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            currentSlide = index;
+            updateSlide();
+            clearInterval(autoplayInterval);
+            initializeSlider();
+        });
+    });
+});
