@@ -118,3 +118,62 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+// Sticky CTA visibility control
+document.addEventListener('DOMContentLoaded', function() {
+    const stickyCta = document.querySelector('.sticky-cta');
+    const benefitsSection = document.querySelector('.benefits');
+    const faqsSection = document.querySelector('.faqs');
+    
+    // Initially hide the sticky CTA
+    stickyCta.style.opacity = '0';
+    stickyCta.style.visibility = 'hidden';
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            // Check if we're scrolling past the benefits section
+            if (entry.target === benefitsSection) {
+                if (!entry.isIntersecting && window.scrollY > benefitsSection.offsetTop) {
+                    stickyCta.style.opacity = '1';
+                    stickyCta.style.visibility = 'visible';
+                } else {
+                    stickyCta.style.opacity = '0';
+                    stickyCta.style.visibility = 'hidden';
+                }
+            }
+            
+            // Check if we're at the FAQ section
+            if (entry.target === faqsSection) {
+                if (entry.isIntersecting) {
+                    stickyCta.style.opacity = '0';
+                    stickyCta.style.visibility = 'hidden';
+                } else if (window.scrollY > benefitsSection.offsetTop) {
+                    stickyCta.style.opacity = '1';
+                    stickyCta.style.visibility = 'visible';
+                }
+            }
+        });
+    }, { 
+        threshold: 0,
+        rootMargin: '-50px'
+    });
+
+    // Observe both sections
+    if (benefitsSection) observer.observe(benefitsSection);
+    if (faqsSection) observer.observe(faqsSection);
+
+    // Additional scroll handler for better control
+    window.addEventListener('scroll', () => {
+        const scrollPosition = window.scrollY;
+        const benefitsPosition = benefitsSection.offsetTop;
+        const faqsPosition = faqsSection.offsetTop;
+
+        if (scrollPosition > benefitsPosition && scrollPosition < faqsPosition) {
+            stickyCta.style.opacity = '1';
+            stickyCta.style.visibility = 'visible';
+        } else {
+            stickyCta.style.opacity = '0';
+            stickyCta.style.visibility = 'hidden';
+        }
+    });
+});
