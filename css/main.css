@@ -126,7 +126,7 @@ h1, h2, h3, h4, h5 {
     );
 }
 
-@media (max-width: 480px) {
+@media (max-width: 680px) {
     .hero__bg::after {
         content: '';
         position: absolute;
