@@ -911,7 +911,7 @@ h1, h2, h3, h4, h5 {
 
 /* Community Section */
 .community.section--dark {
-    background: linear-gradient(135deg, var(--clr-primary-dark) 0%, var(--clr-primary) 100%);
+    background: linear-gradient(135deg, var(--clr-primary-dark) 0%, #2d84e7 100%);
     color: var(--clr-white);
 }
 
@@ -1505,7 +1505,7 @@ main {
 }
 
 .cta-band {
-    background: linear-gradient(45deg, var(--clr-primary), #2D3FE7);
+    background: linear-gradient(135deg, #2de771, #0019ff);
     padding: var(--space-lg) 0;
     position: relative;
     overflow: hidden;
