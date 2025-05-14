@@ -253,3 +253,69 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+// Mobile Menu Toggle
+document.addEventListener('DOMContentLoaded', function() {
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+    const nav = document.querySelector('.nav');
+    
+    if (mobileMenuToggle && nav) {
+        mobileMenuToggle.addEventListener('click', function() {
+            mobileMenuToggle.classList.toggle('active');
+            nav.classList.toggle('active');
+        });
+    }
+    
+    // Header scroll effect
+    const header = document.querySelector('.header');
+    if (header) {
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    }
+    
+    // Close mobile menu when clicking a link
+    const navLinks = document.querySelectorAll('.nav__link');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            mobileMenuToggle.classList.remove('active');
+            nav.classList.remove('active');
+        });
+    });
+});
+
+// Video Testimonials
+document.addEventListener('DOMContentLoaded', function() {
+    const videoOverlays = document.querySelectorAll('.video-overlay');
+    
+    videoOverlays.forEach(overlay => {
+        overlay.addEventListener('click', function() {
+            const videoWrapper = this.closest('.video-wrapper');
+            const video = videoWrapper.querySelector('video');
+            
+            // Hide overlay
+            this.style.display = 'none';
+            
+            // Play video
+            video.play();
+            
+            // Show controls
+            video.controls = true;
+            
+            // When video ends, show overlay again
+            video.addEventListener('ended', function() {
+                overlay.style.display = 'flex';
+                video.controls = false;
+            });
+            
+            // When video is paused, show overlay again
+            video.addEventListener('pause', function() {
+                overlay.style.display = 'flex';
+            });
+        });
+    });
+});
