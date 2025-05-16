@@ -2985,22 +2985,3 @@ main {
     font-style: italic;
 }
 
-.youtube-shorts {
-    width: 100%;
-    aspect-ratio: 9/16;
-    max-width: 315px;
-    margin: 0 auto;
-    border-radius: 12px;
-}
-
-.video-testimonial {
-    display: flex;
-    justify-content: center;
-    margin: 2rem 0;
-}
-
-@media (max-width: 768px) {
-    .youtube-shorts {
-        max-width: 280px;
-    }
-}
